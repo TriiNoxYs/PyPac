@@ -1,8 +1,2 @@
-'''
-Created on 30 nov. 2015
+import sys, os
 
-@author: TriiNoxYs
-'''
-
-if __name__ == '__main__':
-    pass

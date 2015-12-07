@@ -1,16 +1,17 @@
 from tkinter import * #@UnusedWildImport
-from fr.triinoxys.PyPac.loop import agiot
 from tkinter.messagebox import askyesno #@UnusedWildImport @Reimport
- 
-mode = "none"
  
 def quit():  #@ReservedAssignment
     if askyesno('Quitter', 'Êtes-vous sur de vouloir quitter ?'):
         fen1.destroy()
  
 def keypress(event):
-    global can1, mode
-    mode = event.keysym
+    global can1
+    if event.keysym == "Left":  can1.move("pacman",-5,  0)
+    if event.keysym == "Right": can1.move("pacman", 5,  0)
+    if event.keysym == "Up":    can1.move("pacman", 0, -5)
+    if event.keysym == "Down":  can1.move("pacman", 0,  5)
+    
  
 fen1 = Tk()
 fen1.title("PyPac")
@@ -27,7 +28,5 @@ bou1 = Button(fen1, text='Quitter', command=quit)
 bou1.pack()
    
 fen1.bind_all('<Key>', keypress)
-   
-agiot()
    
 fen1.mainloop()

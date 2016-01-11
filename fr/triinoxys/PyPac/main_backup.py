@@ -49,66 +49,32 @@ class newThread (threading.Thread):
         walk()
         
 def walk():
-    global can1, state, x, y
+    global state, x, y
     while True:
         can1.delete("pacman")
-        
-        if x < 0 or x > 544:
-            print("Gitan")
-            break
-        
-        if dir == "None":
+        if state == 1:
+            can1.create_image(x, y, image=up_tiny, tags="pacman")
+            state = 2
+        elif state == 2:
+            can1.create_image(x, y, image=up_big, tags="pacman")
+            state = 3
+        elif state == 3:
             can1.create_image(x, y, image=closed, tags="pacman")
-        
+            state = 1
+            
         if dir == "Left":
-            if state == 1:
-                can1.create_image(x, y, image=left_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=left_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
             can1.move("pacman",-5,  0)
             x -= 5
         
-        elif dir == "Right":
-            if state == 1:
-                can1.create_image(x, y, image=right_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=right_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
+        elif dir == "Right":  
             can1.move("pacman", 5,  0)
             x += 5
         
-        elif dir == "Up":
-            if state == 1:
-                can1.create_image(x, y, image=up_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=up_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
+        elif dir == "Up":  
             can1.move("pacman", 0, -5)
             y -= 5
         
-        elif dir == "Down":
-            if state == 1:
-                can1.create_image(x, y, image=down_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=down_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
+        elif dir == "Down":  
             can1.move("pacman", 0,  5)
             y += 5
             

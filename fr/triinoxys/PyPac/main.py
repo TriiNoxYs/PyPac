@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+#GIT TEST
+
 import threading
 import time
 from tkinter import *  # @UnusedWildImport
@@ -14,7 +16,7 @@ mapHeight = 498
 blocked = False
 
 def quit():  #@ReservedAssignment
-    if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitterbande de gitan de vos mort  ?'):
+    if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitter ?'):
         fen1.destroy()
         #AutowalkThread.Exit()
  

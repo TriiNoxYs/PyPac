@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-#GIT TEST
-
 import threading
 import time
 from tkinter import *  # @UnusedWildImport

@@ -3,10 +3,9 @@
 import threading
 import time
 from tkinter import *  # @UnusedWildImport
-from tkinter.messagebox import askyesno  # @UnusedWildImport @Reimport
-from asyncio.tasks import sleep
+from tkinter.messagebox import askyesno
 
-dir = "None"
+directionection = "None"
 state = 1
 x = 249
 y = 412
@@ -20,22 +19,22 @@ def quit():  #@ReservedAssignment
         #AutowalkThread.Exit()
  
 def keypress(event):
-    global can1, dir
+    global can1, direction
     if event.keysym == "Left":  
         can1.move("pacman",-5,  0)
-        dir = "Left"
+        direction = "Left"
         
     elif event.keysym == "Right": 
         can1.move("pacman", 5,  0)
-        dir = "Right"
+        direction = "Right"
         
     elif event.keysym == "Up":    
         can1.move("pacman", 0, -5)
-        dir = "Up"
+        direction = "Up"
         
     elif event.keysym == "Down":  
         can1.move("pacman", 0,  5)
-        dir = "Down"
+        direction = "Down"
     
     elif event.keysym == "Escape":  
         quit()
@@ -57,10 +56,10 @@ def walk():
     while True:
         can1.delete("pacman")
         
-        if dir == "None":
+        if direction == "None":
             can1.create_image(x, y, image=closed, tags="pacman")
         
-        elif dir == "Left":
+        elif direction == "Left":
             if state == 1:
                 can1.create_image(x, y, image=left_tiny, tags="pacman")
                 state = 2
@@ -73,7 +72,7 @@ def walk():
             can1.move("pacman",-5,  0)
             x -= 5
         
-        elif dir == "Right":
+        elif direction == "Right":
             if state == 1:
                 can1.create_image(x, y, image=right_tiny, tags="pacman")
                 state = 2
@@ -86,7 +85,7 @@ def walk():
             can1.move("pacman", 5,  0)
             x += 5
         
-        elif dir == "Up":
+        elif direction == "Up":
             if state == 1:
                 can1.create_image(x, y, image=up_tiny, tags="pacman")
                 state = 2
@@ -99,7 +98,7 @@ def walk():
             can1.move("pacman", 0, -5)
             y -= 5
         
-        elif dir == "Down":
+        elif direction == "Down":
             if state == 1:
                 can1.create_image(x, y, image=down_tiny, tags="pacman")
                 state = 2
@@ -117,7 +116,7 @@ def walk():
             print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
             #blocked = True
         else:
-             print("X: " + str(x) + "    Y: " + str(y))
+            print("X: " + str(x) + "    Y: " + str(y))
         
             
         time.sleep(0.05)

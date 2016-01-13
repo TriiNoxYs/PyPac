@@ -7,8 +7,8 @@ from tkinter.messagebox import askyesno
 
 direction = "None"
 state = 1
-x = 249
-y = 412
+x = 203
+y = 342
 mapWidth  = 398
 mapHeight = 498
 blocked = False
@@ -55,7 +55,7 @@ def walk():
     global can1, state, x, y
     while True:
         can1.delete("pacman")
-        can1.create_image(x, y, image=down_tiny)
+        can1.create_image(x, y, image=black)
         #can1.create_image(x, y, image=closed)   A FUCKING SNAKE GAME !!!
         
         if direction == "None":
@@ -127,7 +127,7 @@ def walk():
 fen1 = Tk()
 fen1.title("PyPac")
    
-bg         = PhotoImage(file="sprites/objs/new_bg.png")
+bg         = PhotoImage(file="sprites/objs/bg.png")
 black      = PhotoImage(file="sprites/objs/black.png")
 closed     = PhotoImage(file="sprites/pacman/closed.png")
 up_big     = PhotoImage(file="sprites/pacman/up_big.png")

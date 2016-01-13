@@ -55,6 +55,7 @@ def walk():
     global can1, state, x, y
     while True:
         can1.delete("pacman")
+        can1.create_image(x, y, image=down_tiny)
         #can1.create_image(x, y, image=closed)   A FUCKING SNAKE GAME !!!
         
         if direction == "None":
@@ -127,6 +128,7 @@ fen1 = Tk()
 fen1.title("PyPac")
    
 bg         = PhotoImage(file="sprites/objs/new_bg.png")
+black      = PhotoImage(file="sprites/objs/black.png")
 closed     = PhotoImage(file="sprites/pacman/closed.png")
 up_big     = PhotoImage(file="sprites/pacman/up_big.png")
 up_tiny    = PhotoImage(file="sprites/pacman/up_tiny.png")

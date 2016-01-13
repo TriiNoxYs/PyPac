@@ -9,7 +9,10 @@ from asyncio.tasks import sleep
 dir = "None"
 state = 1
 x = 249
-y = 210
+y = 412
+mapHeight = 544
+mapWidth  = 498
+blocked = False
 
 def quit():  #@ReservedAssignment
     if askyesno('Quitter', 'Etes-vous sur de vouloir quitter ?'):
@@ -44,6 +47,7 @@ class newThread (threading.Thread):
         self.threadID = threadID
         self.name = name
         #self.counter = counter
+        
     def run(self):
         print ("Starting " + self.name)
         walk()
@@ -53,14 +57,10 @@ def walk():
     while True:
         can1.delete("pacman")
         
-        if x < 0 or x > 544:
-            print("Gitan")
-            break
-        
         if dir == "None":
             can1.create_image(x, y, image=closed, tags="pacman")
         
-        if dir == "Left":
+        elif dir == "Left":
             if state == 1:
                 can1.create_image(x, y, image=left_tiny, tags="pacman")
                 state = 2
@@ -113,7 +113,12 @@ def walk():
             y += 5
             
         #--- DEBUG ----#
-        print("X: " + str(x) + " Y: " + str(y))
+        if x < 0 or x > 498 or y < 0 or y > mapHeight:
+            print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
+            #blocked = True
+        else:
+             print("X: " + str(x) + "    Y: " + str(y))
+        
             
         time.sleep(0.05)
     
@@ -134,7 +139,7 @@ left_tiny  = PhotoImage(file="sprites/pacman/left_tiny.png")
    
 can1 = Canvas(fen1, width=500, height=546)
 can1.create_image(0, 0, anchor=NW, image=bg, tags="bg")
-can1.create_image(249, 210, image=closed, tags="pacman")
+can1.create_image(x, y, image=closed, tags="pacman")
 can1.pack()
 
 bou1 = Button(fen1, text='Quitter', command=quit)

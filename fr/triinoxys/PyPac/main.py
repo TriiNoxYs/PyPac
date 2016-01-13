@@ -5,16 +5,16 @@ import time
 from tkinter import *  # @UnusedWildImport
 from tkinter.messagebox import askyesno
 
-directionection = "None"
+direction = "None"
 state = 1
 x = 249
 y = 412
-mapHeight = 544
-mapWidth  = 498
+mapWidth  = 398
+mapHeight = 498
 blocked = False
 
 def quit():  #@ReservedAssignment
-    if askyesno('Quitter', 'Etes-vous sur de vouloir quitter ?'):
+    if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitter ?'):
         fen1.destroy()
         #AutowalkThread.Exit()
  
@@ -55,6 +55,7 @@ def walk():
     global can1, state, x, y
     while True:
         can1.delete("pacman")
+        can1.create_image(x, y, image=closed)   #A FUCKING SNAKE GAME !!!
         
         if direction == "None":
             can1.create_image(x, y, image=closed, tags="pacman")
@@ -125,7 +126,7 @@ def walk():
 fen1 = Tk()
 fen1.title("PyPac")
    
-bg         = PhotoImage(file="sprites/objs/bg.png")
+bg         = PhotoImage(file="sprites/objs/new_bg.png")
 closed     = PhotoImage(file="sprites/pacman/closed.png")
 up_big     = PhotoImage(file="sprites/pacman/up_big.png")
 up_tiny    = PhotoImage(file="sprites/pacman/up_tiny.png")
@@ -136,7 +137,7 @@ right_tiny = PhotoImage(file="sprites/pacman/right_tiny.png")
 left_big   = PhotoImage(file="sprites/pacman/left_big.png")
 left_tiny  = PhotoImage(file="sprites/pacman/left_tiny.png")
    
-can1 = Canvas(fen1, width=500, height=546)
+can1 = Canvas(fen1, width=mapWidth, height=mapHeight)
 can1.create_image(0, 0, anchor=NW, image=bg, tags="bg")
 can1.create_image(x, y, image=closed, tags="pacman")
 can1.pack()

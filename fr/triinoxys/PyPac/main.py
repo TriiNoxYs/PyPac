@@ -14,7 +14,7 @@ mapHeight = 498
 blocked = False
 
 def quit():  #@ReservedAssignment
-    if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitter ?'):
+    if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitterbande de gitan de vos mort  ?'):
         fen1.destroy()
         #AutowalkThread.Exit()
  
@@ -55,7 +55,7 @@ def walk():
     global can1, state, x, y
     while True:
         can1.delete("pacman")
-        can1.create_image(x, y, image=closed)   #A FUCKING SNAKE GAME !!!
+        #can1.create_image(x, y, image=closed)   A FUCKING SNAKE GAME !!!
         
         if direction == "None":
             can1.create_image(x, y, image=closed, tags="pacman")

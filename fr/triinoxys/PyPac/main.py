@@ -3,10 +3,10 @@
 
 #--------------------------------------------------#
 #
-#Background  = 400 x 500 (var mapWidth et mapHeight
-#Le pacman se déplace de 5px en 5px (var step)
-#Spawn = 201 342 (var x et y au départ)
-#Les cases sont representées par la matrice                                                                                                                                  
+#Background  = 400 x 500 (var mapWidth et mapHeight)
+#Le pacman se deplace de 5px en 5px (var step)
+#Spawn = 201 342 (var x et y au depart)
+#Les cases sont representÃ©es par la matrice                                                                                                                                  
 #
 #--------------------------------------------------#
 
@@ -35,19 +35,15 @@ def quit():  #@ReservedAssignment
 def keypress(event):
     global can1, direction
     if event.keysym == "Left":  
-        can1.move("pacman",-(step),  0)
         direction = "Left"
         
     elif event.keysym == "Right": 
-        can1.move("pacman", step,  0)
         direction = "Right"
         
     elif event.keysym == "Up":    
-        can1.move("pacman", 0, -(step))
         direction = "Up"
         
     elif event.keysym == "Down":  
-        can1.move("pacman", 0,  step)
         direction = "Down"
     
     elif event.keysym == "Escape":  
@@ -70,7 +66,6 @@ def walk():
     while True:
         can1.delete("pacman")
         can1.create_image(x, y, image=black)
-        #can1.create_image(x, y, image=closed)   A FUCKING SNAKE GAME !!!
         
         if direction == "None":
             can1.create_image(x, y, image=closed, tags="pacman")
@@ -85,8 +80,8 @@ def walk():
             elif state == 3:
                 can1.create_image(x, y, image=closed, tags="pacman")
                 state = 1
-            can1.move("pacman",-5,  0)
-            x -= 5
+            can1.move("pacman",-step,  0)
+            x -= step
         
         elif direction == "Right":
             if state == 1:
@@ -98,8 +93,8 @@ def walk():
             elif state == 3:
                 can1.create_image(x, y, image=closed, tags="pacman")
                 state = 1
-            can1.move("pacman", 5,  0)
-            x += 5
+            can1.move("pacman", step,  0)
+            x += step
         
         elif direction == "Up":
             if state == 1:
@@ -111,8 +106,8 @@ def walk():
             elif state == 3:
                 can1.create_image(x, y, image=closed, tags="pacman")
                 state = 1
-            can1.move("pacman", 0, -5)
-            y -= 5
+            can1.move("pacman", 0, -step)
+            y -= step
         
         elif direction == "Down":
             if state == 1:
@@ -124,8 +119,8 @@ def walk():
             elif state == 3:
                 can1.create_image(x, y, image=closed, tags="pacman")
                 state = 1
-            can1.move("pacman", 0,  5)
-            y += 5
+            can1.move("pacman", 0,  step)
+            y += step
             
         #--- DEBUG ----#
         if x < 0 or x > mapWidth or y < 0 or y > mapHeight:
@@ -133,7 +128,6 @@ def walk():
             #blocked = True
         else:
             print("X: " + str(x) + "    Y: " + str(y))
-        
             
         time.sleep(0.05)
     

@@ -1,17 +1,31 @@
 #!/usr/bin/python
 
+
+#--------------------------------------------------#
+#
+#Background  = 400 x 500 (var mapWidth et mapHeight
+#Le pacman se déplace de 5px en 5px (var step)
+#Spawn = 201 342 (var x et y au départ)
+#Les cases sont representées par la matrice                                                                                                                                  
+#
+#--------------------------------------------------#
+
 import threading
 import time
-from tkinter import *  # @UnusedWildImport
+from tkinter import *   # @UnusedWildImport
 from tkinter.messagebox import askyesno
 
 direction = "None"
 state = 1
-x = 203
-y = 342
-mapWidth  = 398
-mapHeight = 498
+step = 5
+x = 201
+y = 342                                                                
+
+mapWidth  = 400
+mapHeight = 500
 blocked = False
+
+matrix = [[0]*80 for i in range(100)]
 
 def quit():  #@ReservedAssignment
     if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitter ?'):
@@ -21,19 +35,19 @@ def quit():  #@ReservedAssignment
 def keypress(event):
     global can1, direction
     if event.keysym == "Left":  
-        can1.move("pacman",-5,  0)
+        can1.move("pacman",-(step),  0)
         direction = "Left"
         
     elif event.keysym == "Right": 
-        can1.move("pacman", 5,  0)
+        can1.move("pacman", step,  0)
         direction = "Right"
         
     elif event.keysym == "Up":    
-        can1.move("pacman", 0, -5)
+        can1.move("pacman", 0, -(step))
         direction = "Up"
         
     elif event.keysym == "Down":  
-        can1.move("pacman", 0,  5)
+        can1.move("pacman", 0,  step)
         direction = "Down"
     
     elif event.keysym == "Escape":  
@@ -114,7 +128,7 @@ def walk():
             y += 5
             
         #--- DEBUG ----#
-        if x < 0 or x > 498 or y < 0 or y > mapHeight:
+        if x < 0 or x > mapWidth or y < 0 or y > mapHeight:
             print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
             #blocked = True
         else:

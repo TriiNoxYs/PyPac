@@ -25,28 +25,30 @@ mapWidth  = 400
 mapHeight = 500
 blocked = False
 
-matrix = [[0]*80 for i in range(100)]
+matrix = [[0]*28 for i in range(31)]
+
+
 
 def quit():  #@ReservedAssignment
     if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitter ?'):
         fen1.destroy()
-        #AutowalkThread.Exit()
+        
  
 def keypress(event):
     global can1, direction
-    if event.keysym == "Left":  
+    if event.keysym == "Left":
         direction = "Left"
         
-    elif event.keysym == "Right": 
+    elif event.keysym == "Right":
         direction = "Right"
         
-    elif event.keysym == "Up":    
+    elif event.keysym == "Up":
         direction = "Up"
         
-    elif event.keysym == "Down":  
+    elif event.keysym == "Down":
         direction = "Down"
     
-    elif event.keysym == "Escape":  
+    elif event.keysym == "Escape":
         quit()
         
 
@@ -61,16 +63,17 @@ class newThread (threading.Thread):
         print ("Starting " + self.name)
         walk()
         
+        
 def walk():
-    global can1, state, x, y
+    global can1, matrix, state, x, y
     while True:
-        can1.delete("pacman")
-        can1.create_image(x, y, image=black)
-        
         if direction == "None":
-            can1.create_image(x, y, image=closed, tags="pacman")
-        
-        elif direction == "Left":
+            pass
+        else:
+            can1.delete("pacman")
+            can1.create_image(x, y, image=black)
+            
+        if direction == "Left":
             if state == 1:
                 can1.create_image(x, y, image=left_tiny, tags="pacman")
                 state = 2
@@ -122,6 +125,8 @@ def walk():
             can1.move("pacman", 0,  step)
             y += step
             
+            #matrix[][]
+            
         #--- DEBUG ----#
         if x < 0 or x > mapWidth or y < 0 or y > mapHeight:
             print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
@@ -149,7 +154,7 @@ left_tiny  = PhotoImage(file="sprites/pacman/left_tiny.png")
    
 can1 = Canvas(fen1, width=mapWidth, height=mapHeight)
 can1.create_image(0, 0, anchor=NW, image=bg, tags="bg")
-can1.create_image(x, y, image=closed, tags="pacman")
+can1.create_image(x, y, image=left_big, tags="pacman")
 can1.pack()
 
 bou1 = Button(fen1, text='Quitter', command=quit)
@@ -163,3 +168,4 @@ AutowalkThread.start()
 fen1.mainloop()
 
 print ("Exiting Main Thread")
+exit()

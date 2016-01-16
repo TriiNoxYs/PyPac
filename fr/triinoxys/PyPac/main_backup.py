@@ -6,7 +6,7 @@
 #Background  = 400 x 500 (var mapWidth et mapHeight)
 #Le pacman se deplace de 5px en 5px (var step)
 #Spawn = 201 342 (var x et y au depart)
-#Les cases sont representées par la matrice                                                                                                                                  
+#Les cases sont representÃ©es par la matrice                                                                                                                                  
 #
 #--------------------------------------------------#
 
@@ -17,36 +17,70 @@ from tkinter.messagebox import askyesno
 
 direction = "None"
 state = 1
-step = 5
-x = 201
-y = 342                                                                
+step = 13
+x = 204
+y = 340                                                          
 
 mapWidth  = 400
 mapHeight = 500
 blocked = False
 
-matrix = [[0]*80 for i in range(100)]
+loc = [24, 15]
+matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+          [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+          [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],  
+          [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+
+mPos = [24, 13]
 
 def quit():  #@ReservedAssignment
     if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitter ?'):
         fen1.destroy()
-        #AutowalkThread.Exit()
+        
  
 def keypress(event):
     global can1, direction
-    if event.keysym == "Left":  
+    if event.keysym == "Left":
         direction = "Left"
         
-    elif event.keysym == "Right": 
+    elif event.keysym == "Right":
         direction = "Right"
         
-    elif event.keysym == "Up":    
+    elif event.keysym == "Up":
         direction = "Up"
         
-    elif event.keysym == "Down":  
+    elif event.keysym == "Down":
         direction = "Down"
     
-    elif event.keysym == "Escape":  
+    elif event.keysym == "Escape":
         quit()
         
 
@@ -55,22 +89,22 @@ class newThread (threading.Thread):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
-        #self.counter = counter
         
     def run(self):
         print ("Starting " + self.name)
         walk()
         
+        
 def walk():
-    global can1, state, x, y
+    global can1, matrix, state, x, y
     while True:
-        can1.delete("pacman")
-        can1.create_image(x, y, image=black)
-        
         if direction == "None":
-            can1.create_image(x, y, image=closed, tags="pacman")
-        
-        elif direction == "Left":
+            pass
+        else:
+            can1.delete("pacman")
+            can1.create_image(x, y, image=black)
+            
+        if direction == "Left":
             if state == 1:
                 can1.create_image(x, y, image=left_tiny, tags="pacman")
                 state = 2
@@ -82,6 +116,7 @@ def walk():
                 state = 1
             can1.move("pacman",-step,  0)
             x -= step
+            mPos[1] -= 1
         
         elif direction == "Right":
             if state == 1:
@@ -95,6 +130,7 @@ def walk():
                 state = 1
             can1.move("pacman", step,  0)
             x += step
+            mPos[1] += 1
         
         elif direction == "Up":
             if state == 1:
@@ -108,6 +144,7 @@ def walk():
                 state = 1
             can1.move("pacman", 0, -step)
             y -= step
+            mPos[0] -= 1
         
         elif direction == "Down":
             if state == 1:
@@ -121,15 +158,18 @@ def walk():
                 state = 1
             can1.move("pacman", 0,  step)
             y += step
+            mPos[0] += 1
+            
             
         #--- DEBUG ----#
         if x < 0 or x > mapWidth or y < 0 or y > mapHeight:
-            print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
-            #blocked = True
+            #print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
+            print("mPos: " + str(mPos[0]) + "    " + str(mPos[1]))
         else:
-            print("X: " + str(x) + "    Y: " + str(y))
+            #print("X: " + str(x) + "    Y: " + str(y))
+            print("mPos: " + str(mPos[0]) + "    " + str(mPos[1]))
             
-        time.sleep(0.05)
+        time.sleep(0.1)
     
 
 fen1 = Tk()
@@ -149,7 +189,7 @@ left_tiny  = PhotoImage(file="sprites/pacman/left_tiny.png")
    
 can1 = Canvas(fen1, width=mapWidth, height=mapHeight)
 can1.create_image(0, 0, anchor=NW, image=bg, tags="bg")
-can1.create_image(x, y, image=closed, tags="pacman")
+can1.create_image(x, y, image=left_big, tags="pacman")
 can1.pack()
 
 bou1 = Button(fen1, text='Quitter', command=quit)
@@ -163,3 +203,4 @@ AutowalkThread.start()
 fen1.mainloop()
 
 print ("Exiting Main Thread")
+exit()

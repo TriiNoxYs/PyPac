@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-
 #--------------------------------------------------#
 #
 #Background  = 400 x 500 (var mapWidth et mapHeight)
@@ -19,47 +18,46 @@ direction = "None"
 state = 1
 step = 13
 x = 204
-y = 340                                                          
+y = 344                                                          
 
 mapWidth  = 400
 mapHeight = 500
 blocked = False
 
-loc = [24, 15]
-matrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
-          [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
-          [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0],  
-          [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+loc = [23, 14]
+matrix=[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+        [0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+        [0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0], 
+        [0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0], 
+        [0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], 
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0], 
+        [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0], 
+        [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0], 
+        [0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0], 
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+ 
 
-
-mPos = [24, 13]
 
 def quit():  #@ReservedAssignment
     if askyesno('Quitter', 'Êtes-vous sûr de vouloir quitter ?'):
@@ -67,7 +65,7 @@ def quit():  #@ReservedAssignment
         
  
 def keypress(event):
-    global can1, direction
+    global can1, direction, matrix, state, x, y
     if event.keysym == "Left":
         direction = "Left"
         
@@ -82,7 +80,95 @@ def keypress(event):
     
     elif event.keysym == "Escape":
         quit()
+    
+    if direction == "None":
+            pass
+    else:
+        can1.delete("pacman")
+        can1.create_image(x, y, image=black)
+            
+    if direction == "Left":
+        if matrix[loc[0]][loc[1]-1] == 1:
+            if state == 1:
+                can1.create_image(x, y, image=left_tiny, tags="pacman")
+                state = 2
+            elif state == 2:
+                can1.create_image(x, y, image=left_big, tags="pacman")
+                state = 3
+            elif state == 3:
+                can1.create_image(x, y, image=closed, tags="pacman")
+                state = 1
+            
+            can1.move("pacman", -step,  0)
+            x -= step
+            loc[1] -= 1
+        else:
+            can1.create_image(x, y, image=closed, tags="pacman")
         
+    elif direction == "Right":
+        if matrix[loc[0]][loc[1]+1] == 1:
+            if state == 1:
+                can1.create_image(x, y, image=right_tiny, tags="pacman")
+                state = 2
+            elif state == 2:
+                can1.create_image(x, y, image=right_big, tags="pacman")
+                state = 3
+            elif state == 3:
+                can1.create_image(x, y, image=closed, tags="pacman")
+                state = 1
+                    
+            can1.move("pacman", step,  0)
+            x += step
+            loc[1] += 1
+        else:
+            can1.create_image(x, y, image=closed, tags="pacman")
+        
+    elif direction == "Up":
+        if matrix[loc[0]-1][loc[1]] == 1:
+            if state == 1:
+                can1.create_image(x, y, image=up_tiny, tags="pacman")
+                state = 2
+            elif state == 2:
+                can1.create_image(x, y, image=up_big, tags="pacman")
+                state = 3
+            elif state == 3:
+                can1.create_image(x, y, image=closed, tags="pacman")
+                state = 1
+                    
+            can1.move("pacman", 0, -step)
+            y -= step
+            loc[0] -= 1
+        else:
+            can1.create_image(x, y, image=closed, tags="pacman")
+        
+    elif direction == "Down":
+        if matrix[loc[0]+1][loc[1]] == 1:
+            if state == 1:
+                can1.create_image(x, y, image=down_tiny, tags="pacman")
+                state = 2
+            elif state == 2:
+                can1.create_image(x, y, image=down_big, tags="pacman")
+                state = 3
+            elif state == 3:
+                can1.create_image(x, y, image=closed, tags="pacman")
+                state = 1
+                    
+            can1.move("pacman", 0,  step)
+            y += step
+            loc[0] += 1
+        else:
+            can1.create_image(x, y, image=closed, tags="pacman")
+                
+        
+    #--- DEBUG ----#
+    if x < 0 or x > mapWidth or y < 0 or y > mapHeight:
+        #print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
+        print("loc: " + str(loc[0]) + "    " + str(loc[1]) + "   Out of map !")
+    else:
+        #print("X: " + str(x) + "    Y: " + str(y))
+        print("loc: " + str(loc[0]) + "    " + str(loc[1]))
+            
+    time.sleep(0.09)
 
 class newThread (threading.Thread):
     def __init__(self, threadID, name):
@@ -97,79 +183,7 @@ class newThread (threading.Thread):
         
 def walk():
     global can1, matrix, state, x, y
-    while True:
-        if direction == "None":
-            pass
-        else:
-            can1.delete("pacman")
-            can1.create_image(x, y, image=black)
-            
-        if direction == "Left":
-            if state == 1:
-                can1.create_image(x, y, image=left_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=left_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
-            can1.move("pacman",-step,  0)
-            x -= step
-            mPos[1] -= 1
-        
-        elif direction == "Right":
-            if state == 1:
-                can1.create_image(x, y, image=right_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=right_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
-            can1.move("pacman", step,  0)
-            x += step
-            mPos[1] += 1
-        
-        elif direction == "Up":
-            if state == 1:
-                can1.create_image(x, y, image=up_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=up_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
-            can1.move("pacman", 0, -step)
-            y -= step
-            mPos[0] -= 1
-        
-        elif direction == "Down":
-            if state == 1:
-                can1.create_image(x, y, image=down_tiny, tags="pacman")
-                state = 2
-            elif state == 2:
-                can1.create_image(x, y, image=down_big, tags="pacman")
-                state = 3
-            elif state == 3:
-                can1.create_image(x, y, image=closed, tags="pacman")
-                state = 1
-            can1.move("pacman", 0,  step)
-            y += step
-            mPos[0] += 1
-            
-            
-        #--- DEBUG ----#
-        if x < 0 or x > mapWidth or y < 0 or y > mapHeight:
-            #print("X: " + str(x) + "    Y: " + str(y) + "   Out of map !")
-            print("mPos: " + str(mPos[0]) + "    " + str(mPos[1]))
-        else:
-            #print("X: " + str(x) + "    Y: " + str(y))
-            print("mPos: " + str(mPos[0]) + "    " + str(mPos[1]))
-            
-        time.sleep(0.1)
+    pass
     
 
 fen1 = Tk()
